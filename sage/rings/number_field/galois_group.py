@@ -603,7 +603,7 @@ class GaloisGroup_subgroup(GaloisGroup_v2):
         if self.order() == 1:
             return self._galois_closure # work around a silly error
             
-        vecs = [pari(g.list()).Vecsmall() for g in self._elts]
+        vecs = [pari(g.domain()).Vecsmall() for g in self._elts]
         v = self._ambient._pari_data.galoisfixedfield(vecs)
         x = self._galois_closure(v[1])
         return self._galois_closure.subfield(x)
@@ -752,6 +752,7 @@ class GaloisGroup_v3(GaloisGroup_v2):
     #    raise NotImplementedError("Override this.")
     
     def character(self, values):
+        from sage.rings.number_field.artin_representation import ArtinRepresentation
         return ArtinRepresentation(self, values)
 
     def artin_symbol(self, P):

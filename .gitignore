@@ -1,1 +1,5 @@
 /*
+!/.gitignore
+!/sage/rings/number_field/galois_group.py
+!/sage/rings/number_fields/artin_representation.py
+

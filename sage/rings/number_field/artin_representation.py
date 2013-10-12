@@ -14,13 +14,14 @@ from sage.misc.misc_c import prod
 from sage.rings.rational_field import QQ
 from sage.rings.polynomial.polynomial_ring_constructor import PolynomialRing
 
-from sage.groups.class_function import ClassFunction
+from sage.groups.class_function import ClassFunction_gap
 
-class ArtinRepresentation(ClassFunction):
+class ArtinRepresentation(ClassFunction_gap):
     """
     TESTS::
     
-        sage: from sage.rings.number_field.galois_group import GaloisGroup_v3, ArtinRepresentation
+        sage: from sage.rings.number_field.galois_group import GaloisGroup_v3
+        sage: from sage.rings.number_field.artin_representation import ArtinRepresentation
         sage: K = NumberField(x^3 - 2, 'a')
         sage: G = GaloisGroup_v3(K, names='b2')
         sage: chi = ArtinRepresentation(G, [1, 1, 1])
@@ -80,7 +81,8 @@ class ArtinRepresentation(ClassFunction):
         """
         EXAMPLES::
         
-            sage: from sage.rings.number_field.galois_group import GaloisGroup_v3, ArtinRepresentation
+            sage: from sage.rings.number_field.galois_group import GaloisGroup_v3
+            sage: from sage.rings.number_field.artin_representation import ArtinRepresentation
             sage: f = x^8 + 24*x^6 + 144*x^4 + 288*x^2 + 144
             sage: K = NumberField(f, 'a')
             sage: G = GaloisGroup_v3(K)
@@ -189,7 +191,8 @@ class ArtinRepresentation(ClassFunction):
         EXAMPLES::
         
         sage: K35 = NumberField(x^3 - 35, 'a')
-        sage: from sage.rings.number_field.galois_group import GaloisGroup_v3, ArtinRepresentation
+        sage: from sage.rings.number_field.galois_group import GaloisGroup_v3
+        sage: from sage.rings.number_field.artin_representation import ArtinRepresentation
         sage: G35 = GaloisGroup_v3(K35, names='b')
         sage: L35 = G35.splitting_field()
         sage: chi = ArtinRepresentation(G35, [2,0,-1])
@@ -303,7 +306,8 @@ class ArtinRepresentation(ClassFunction):
         r"""
         Determines the characteristic polynomial `\det(I-gT)`
         
-        sage: from sage.rings.number_field.galois_group import GaloisGroup_v3, ArtinRepresentation
+        sage: from sage.rings.number_field.galois_group import GaloisGroup_v3
+        sage: from sage.rings.number_field.artin_representation import ArtinRepresentation
         sage: K = NumberField(x^3 - 2, 'a')
         sage: G = GaloisGroup_v3(K, names='b2')
         sage: chi = ArtinRepresentation(G, [2, 0, -1])
@@ -355,7 +359,7 @@ class ArtinRepresentation(ClassFunction):
                     break
             if add:
                 inv += mult * theta
-        return inv
+        return ArtinRepresentation(G, inv)
     
     @cached_method
     def root_number(self, p=None):
@@ -364,7 +368,8 @@ class ArtinRepresentation(ClassFunction):
         
         EXAMPLES::
         
-            sage: from sage.rings.number_field.galois_group import GaloisGroup_v3, ArtinRepresentation
+            sage: from sage.rings.number_field.galois_group import GaloisGroup_v3
+            sage: from sage.rings.number_field.artin_representation import ArtinRepresentation
             sage: f = x^8 + 24*x^6 + 144*x^4 + 288*x^2 + 144
             sage: K = NumberField(f, 'a')
             sage: G = GaloisGroup_v3(K)
