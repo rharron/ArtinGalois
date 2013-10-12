@@ -838,7 +838,7 @@ class GaloisGroupElement(PermutationGroupElement):
             Defn: w |--> -w
         """
         L = self.parent().splitting_field()
-        a = L(self.parent()._pari_data.galoispermtopol(pari(self.list()).Vecsmall()))
+        a = L(self.parent()._pari_data.galoispermtopol(pari(self.domain()).Vecsmall()))
         return L.hom(a, L)
 
     def __call__(self, x):
