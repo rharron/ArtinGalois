@@ -5,6 +5,7 @@ AUTHORS:
 
 - William Stein (2004, 2005): initial version
 - David Loeffler (2009): rewrite to give explicit homomorphism groups
+- Robert Harron (2013): rewrite to allow non-Galois fields and work with Artin representations
 
 TESTS:
 

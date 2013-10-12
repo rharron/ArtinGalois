@@ -1,3 +1,24 @@
+"""
+Artin representations for number fields
+
+AUTHORS:
+
+- Robert Harron (2013): initial version
+
+TESTS:
+
+Standard test of pickleability::
+
+    sage: from sage.rings.number_field.galois_group import GaloisGroup_v3
+    sage: from sage.rings.number_field.artin_representation import ArtinRepresentation
+    sage: K = NumberField(x^3 - 2, 'a')
+    sage: G = GaloisGroup_v3(K, names='b')
+    sage: chi = ArtinRepresentation(G, [2, 0, -1])
+    sage: chi == loads(dumps(chi))
+    True
+
+"""
+
 from sage.structure.sage_object import SageObject
 from sage.groups.perm_gps.permgroup import PermutationGroup_generic, PermutationGroup_subgroup
 from sage.groups.perm_gps.permgroup_element import PermutationGroupElement
@@ -383,6 +404,8 @@ class ArtinRepresentation(ClassFunction_gap):
             sage: chi.root_number()
             1
         """
+        if not  p is None:
+            return NotImplementedError
         try:
             return self._root_number
         except AttributeError:
